@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Por qué elegirnos? - ImportMVS</title>
+    <meta name="description" content="Descubre por qué somos la mejor opción para tus importaciones">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos específicos para la página "Por qué" */
+        .seccion-porque {
+            padding: 100px 0;
+            background-color: var(--color-claro);
+        }
+
+        .contenedor-porque {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .introduccion-porque {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .introduccion-porque h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--color-primario);
+        }
+
+        .introduccion-porque p {
+            font-size: 1.2rem;
+            color: var(--gris);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contenedor-beneficios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .tarjeta-beneficio {
+            background-color: var(--blanco);
+            border-radius: var(--radio-borde);
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transicion);
+            box-shadow: var(--sombra);
+            border-top: 4px solid var(--color-secundario);
+        }
+
+        .tarjeta-beneficio:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .icono-beneficio {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .titulo-beneficio {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--color-primario);
+        }
+
+        .descripcion-beneficio {
+            color: var(--gris);
+            line-height: 1.6;
+        }
+
+        .seccion-estadisticas {
+            padding: 80px 0;
+            background-color: var(--blanco);
+        }
+
+        .contenedor-estadisticas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .item-estadistica {
+            padding: 30px;
+        }
+
+        .numero-estadistica {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-secundario);
+            margin-bottom: 10px;
+        }
+
+        .etiqueta-estadistica {
+            font-size: 1.1rem;
+            color: var(--color-primario);
+            font-weight: 600;
+        }
+
+        .seccion-testimonios {
+            padding: 80px 0;
+            background-color: var(--gris-claro);
+        }
+
+        .tarjeta-testimonio {
+            background-color: var(--blanco);
+            border-radius: var(--radio-borde);
+            padding: 40px;
+            margin: 20px;
+            box-shadow: var(--sombra);
+            position: relative;
+        }
+
+        .tarjeta-testimonio:before {
+            content: '"';
+            font-size: 5rem;
+            color: var(--color-secundario);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            opacity: 0.3;
+        }
+
+        .texto-testimonio {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .autor-testimonio {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar-autor {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--color-secundario);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blanco);
+            font-weight: bold;
+        }
+
+        .informacion-autor h4 {
+            margin-bottom: 5px;
+            color: var(--color-primario);
+        }
+
+        .informacion-autor p {
+            color: var(--gris);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .introduccion-porque h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tarjeta-beneficio {
+                padding: 30px 20px;
+            }
+            
+            .numero-estadistica {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabecera con Navegación -->
+    <header class="cabecera">
+    <nav class="navegacion">
+        <div class="marca-navegacion">
+            <a href="index.html" class="enlace-logo">
+                <img src="imgs/Perfilmvscollage.png" alt="ImportMVS" class="imagen-logo">
+                <span class="texto-logo">ImportMVS</span>
+            </a>
+        </div>
+
+        <ul class="menu-navegacion">
+            <li class="item-navegacion">
+                <a href="index.html">Inicio</a>
+            </li>
+
+            <li class="item-navegacion desplegable">
+                <a href="productos.html" class="desplegable-activador">
+                    Productos
+                </a>
+                <ul class="menu-desplegable">
+                    <li><a href="productos.html#belleza">Belleza</a></li>
+                    <li><a href="productos.html#naturales">Naturales</a></li>
+                    <li><a href="productos.html#personales">Personales</a></li>
+                    <li><a href="productos.html#software">Software</a></li>
+                </ul>
+            </li>
+
+            <li class="item-navegacion">
+                <a href="nosotros.html">Nosotros</a>
+            </li>
+
+            <li class="item-navegacion">
+                <a href="contacto.html">Contacto</a>
+            </li>
+
+            <li class="item-navegacion">
+                <a href="porque.html">¿Por qué elegirnos?</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+
+    <main class="contenido-principal">
+        <!-- Sección Principal "Por qué elegirnos" -->
+        <section class="seccion-porque">
+            <div class="contenedor contenedor-porque">
+                <div class="introduccion-porque">
+                    <h1>¿Por qué elegir ImportMVS?</h1>
+                    <p>Somos más que una importadora, somos tu socio confiable en la búsqueda de productos de calidad con el mejor servicio al cliente.</p>
+                </div>
+
+                <div class="contenedor-beneficios">
+                    <div class="tarjeta-beneficio">
+                        <div class="icono-beneficio">⭐</div>
+                        <h3 class="titulo-beneficio">Calidad Garantizada</h3>
+                        <p class="descripcion-beneficio">Todos nuestros productos pasan por rigurosos controles de calidad para asegurar que recibas solo lo mejor.</p>
+                    </div>
+
+                    <div class="tarjeta-beneficio">
+                        <div class="icono-beneficio">🚚</div>
+                        <h3 class="titulo-beneficio">Entrega Rápida</h3>
+                        <p class="descripcion-beneficio">Contamos con logística eficiente que garantiza entregas puntuales a nivel nacional.</p>
+                    </div>
+
+                    <div class="tarjeta-beneficio">
+                        <div class="icono-beneficio">💬</div>
+                        <h3 class="titulo-beneficio">Atención Personalizada</h3>
+                        <p class="descripcion-beneficio">Nuestro equipo está siempre disponible para asesorarte y resolver tus dudas.</p>
+                    </div>
+
+                    <div class="tarjeta-beneficio">
+                        <div class="icono-beneficio">💰</div>
+                        <h3 class="titulo-beneficio">Precios Competitivos</h3>
+                        <p class="descripcion-beneficio">Ofrecemos los mejores precios del mercado sin comprometer la calidad de nuestros productos.</p>
+                    </div>
+
+                    <div class="tarjeta-beneficio">
+                        <div class="icono-beneficio">🔄</div>
+                        <h3 class="titulo-beneficio">Garantía y Devoluciones</h3>
+                        <p class="descripcion-beneficio">Política clara de garantías y devoluciones para tu completa tranquilidad.</p>
+                    </div>
+
+                    <div class="tarjeta-beneficio">
+                        <div class="icono-beneficio">🌎</div>
+                        <h3 class="titulo-beneficio">Productos Internacionales</h3>
+                        <p class="descripcion-beneficio">Importamos directamente de los mejores proveedores a nivel mundial.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Estadísticas -->
+        <section class="seccion-estadisticas">
+            <div class="contenedor">
+                <div class="contenedor-estadisticas">
+                    <div class="item-estadistica">
+                        <div class="numero-estadistica">5+</div>
+                        <div class="etiqueta-estadistica">Años de Experiencia</div>
+                    </div>
+                    <div class="item-estadistica">
+                        <div class="numero-estadistica">500+</div>
+                        <div class="etiqueta-estadistica">Clientes Satisfechos</div>
+                    </div>
+                    <div class="item-estadistica">
+                        <div class="numero-estadistica">1000+</div>
+                        <div class="etiqueta-estadistica">Productos Importados</div>
+                    </div>
+                    <div class="item-estadistica">
+                        <div class="numero-estadistica">24/7</div>
+                        <div class="etiqueta-estadistica">Soporte Disponible</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Testimonios -->
+        <section class="seccion-testimonios">
+            <div class="contenedor">
+                <div class="encabezado-seccion">
+                    <h2 class="titulo-seccion">Lo que dicen nuestros clientes</h2>
+                    <p class="subtitulo-seccion">Testimonios reales de quienes confían en nosotros</p>
+                </div>
+
+                <div class="contenedor-productos">
+                    <div class="tarjeta-testimonio">
+                        <p class="texto-testimonio">"ImportMVS ha sido un descubrimiento increíble. La calidad de sus productos supera todas mis expectativas y el servicio al cliente es excepcional. Siempre responden rápido y solucionan cualquier duda."</p>
+                        <div class="autor-testimonio">
+                            <div class="avatar-autor">MG</div>
+                            <div class="informacion-autor">
+                                <h4>María González</h4>
+                                <p>Cliente desde 2021</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-testimonio">
+                        <p class="texto-testimonio">"Como dueño de un negocio, necesito proveedores confiables. ImportMVS nunca me ha fallado. Los productos llegan en perfecto estado y siempre a tiempo. ¡Los recomiendo completamente!"</p>
+                        <div class="autor-testimonio">
+                            <div class="avatar-autor">CR</div>
+                            <div class="informacion-autor">
+                                <h4>Carlos Rodríguez</h4>
+                                <p>Empresario - Cliente Corporativo</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-testimonio">
+                        <p class="texto-testimonio">"La variedad de productos que ofrecen es impresionante. Desde software hasta productos de belleza, todo tiene excelente calidad. Me encanta que acepten múltiples métodos de pago."</p>
+                        <div class="autor-testimonio">
+                            <div class="avatar-autor">LA</div>
+                            <div class="informacion-autor">
+                                <h4>Laura Andrade</h4>
+                                <p>Cliente frecuente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de Página -->
+    <footer class="pie-pagina">
+        <div class="contenedor">
+            <div class="contenido-pie">
+                <div class="marca-pie">
+                    <img src="imgs/Perfilmvscollage.png" alt="ImportMVS" class="logo-pie">
+                    <h3 class="titulo-pie">ImportMVS</h3>
+                    <p class="eslogan-pie">Importando calidad, entregando confianza</p>
+                </div>
+                
+                <div class="enlaces-pie">
+                    <h4 class="encabezado-pie">Enlaces Rápidos</h4>
+                    <ul class="menu-pie">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="productos/productos.html">Productos</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="porque.html">¿Por qué elegirnos?</a></li>
+                    </ul>
+                </div>
+                
+                <div class="redes-pie">
+                    <h4 class="encabezado-pie">Síguenos</h4>
+                    <div class="contenedor-redes">
+                        <a href="#" class="icono-red" aria-label="Facebook">
+                            <span class="icono">📘</span>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="#" class="icono-red" aria-label="Instagram">
+                            <span class="icono">📷</span>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="#" class="icono-red" aria-label="WhatsApp">
+                            <span class="icono">💬</span>
+                            <span>WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="base-pie">
+                <p class="derechos-autor">&copy; 2023 ImportMVS. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="funciones.js"></script>
+</body>
+</html>
