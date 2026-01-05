@@ -364,7 +364,7 @@ body {
     display: flex;
     gap: 40px;
     width: max-content;
-    animation: desplazarPagos 30s linear infinite;
+    animation: desplazarPagos 9s linear infinite;
 }
 
 .metodo-pago {
@@ -393,6 +393,13 @@ body {
 }
 
 .nombre-pago {
+    font-weight: 600;
+    color: var(--color-primario);
+}
+.texto-pagos-destacado {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--color-primario);
 }
@@ -547,7 +554,8 @@ body {
     
     .carril-pagos {
         gap: 20px;
-        animation-duration: 20s;
+        animation: deslizar 14s linear infinite;
+
     }
     
     .metodo-pago {
