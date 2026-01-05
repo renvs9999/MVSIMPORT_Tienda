@@ -6,7 +6,7 @@ En este branch se añadió un sistema de login utilizando Node.js y Express.
 A la tienda final en este nuevo branch le añadí un login con Node.js y Express con autoenticación de usuario.
 
 El flujo es:
-- Login servido desde backend/public
+- Login servicio desde backend/public
 - Validación de credenciales en backend
 - Redirección automática a la tienda (frontend)
 - Acceso completo a la tienda solo tras autenticación
@@ -19,4 +19,5 @@ Subir un proyecto completo y funcional como parte de un portafolio profesional e
 - Express
 - HTML / CSS / JavaScript
 - Arquitectura Frontend + Backend separada
-
+- API REST
+- Autenticación basada en credenciales
