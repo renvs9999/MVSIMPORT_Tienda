@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - ImportMVS</title>
+    <meta name="description" content="Catálogo completo de productos importados de calidad">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos específicos para la página de Productos */
+        .seccion-productos {
+            padding: 100px 0;
+            background-color: var(--color-claro);
+        }
+
+        .filtros-productos {
+            background-color: var(--blanco);
+            border-radius: var(--radio-borde);
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: var(--sombra);
+        }
+
+        .lista-filtros {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            list-style: none;
+        }
+
+        .filtro-item {
+            padding: 10px 25px;
+            background-color: var(--gris-claro);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transicion);
+            font-weight: 600;
+        }
+
+        .filtro-item:hover,
+        .filtro-item.activo {
+            background-color: var(--color-secundario);
+            color: var(--color-primario);
+        }
+
+        .categoria-productos {
+            margin-bottom: 80px;
+            scroll-margin-top: 100px;
+        }
+
+        .encabezado-categoria {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--color-secundario);
+        }
+
+        .titulo-categoria {
+            font-size: 2rem;
+            color: var(--color-primario);
+        }
+
+        .contador-productos {
+            background-color: var(--color-secundario);
+            color: var(--color-primario);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .contenedor-catalogo {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .tarjeta-catalogo {
+            background-color: var(--blanco);
+            border-radius: var(--radio-borde);
+            overflow: hidden;
+            transition: var(--transicion);
+            box-shadow: var(--sombra);
+            border: 1px solid var(--gris-claro);
+        }
+
+        .tarjeta-catalogo:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .imagen-catalogo {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .contenido-catalogo {
+            padding: 25px;
+        }
+
+        .nombre-producto {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--color-primario);
+        }
+
+        .descripcion-producto-catalogo {
+            color: var(--gris);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .precio-producto {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-secundario);
+            margin-bottom: 20px;
+        }
+
+        .etiquetas-producto {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .etiqueta {
+            background-color: var(--gris-claro);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .etiqueta.disponible {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .etiqueta.nuevo {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+
+        .etiqueta.oferta {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        /* Sección de Destacados */
+        .seccion-destacados-productos {
+            padding: 80px 0;
+            background-color: var(--blanco);
+        }
+
+        .contenedor-destacados {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+
+        .imagen-destacados {
+            border-radius: var(--radio-borde);
+            overflow: hidden;
+            box-shadow: var(--sombra);
+        }
+
+        .imagen-destacados img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Sección de Solicitud */
+        .seccion-solicitud {
+            padding: 80px 0;
+            background-color: var(--gris-claro);
+            text-align: center;
+        }
+
+        .contenido-solicitud {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .lista-filtros {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filtro-item {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .encabezado-categoria {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .contenedor-destacados {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabecera con Navegación -->
+    <header class="cabecera">
+    <nav class="navegacion">
+        <div class="marca-navegacion">
+            <a href="index.html" class="enlace-logo">
+                <img src="imgs/Perfilmvscollage.png" alt="ImportMVS" class="imagen-logo">
+                <span class="texto-logo">ImportMVS</span>
+            </a>
+        </div>
+
+        <ul class="menu-navegacion">
+            <li class="item-navegacion">
+                <a href="index.html">Inicio</a>
+            </li>
+
+            <li class="item-navegacion desplegable">
+                <a href="productos.html" class="desplegable-activador">
+                    Productos
+                </a>
+                <ul class="menu-desplegable">
+                    <li><a href="productos.html#belleza">Belleza</a></li>
+                    <li><a href="productos.html#naturales">Naturales</a></li>
+                    <li><a href="productos.html#personales">Personales</a></li>
+                    <li><a href="productos.html#software">Software</a></li>
+                </ul>
+            </li>
+
+            <li class="item-navegacion">
+                <a href="nosotros.html">Nosotros</a>
+            </li>
+
+            <li class="item-navegacion">
+                <a href="contacto.html">Contacto</a>
+            </li>
+
+            <li class="item-navegacion">
+                <a href="porque.html">¿Por qué elegirnos?</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+    <main class="contenido-principal">
+        <!-- Sección Principal de Productos -->
+        <section class="seccion-productos">
+            <div class="contenedor">
+                <div class="encabezado-seccion">
+                    <h1 class="titulo-seccion">Catálogo de Productos</h1>
+                    <p class="subtitulo-seccion">Descubre nuestra amplia variedad de productos importados de calidad</p>
+                </div>
+
+                <!-- Filtros de Productos -->
+                <div class="filtros-productos">
+                    <ul class="lista-filtros">
+                        <li class="filtro-item activo" onclick="filtrarProductos('todos')">Todos</li>
+                        <li class="filtro-item" onclick="filtrarProductos('belleza')">Belleza</li>
+                        <li class="filtro-item" onclick="filtrarProductos('naturales')">Naturales</li>
+                        <li class="filtro-item" onclick="filtrarProductos('personales')">Personales</li>
+                        <li class="filtro-item" onclick="filtrarProductos('software')">Software</li>
+                        <li class="filtro-item" onclick="filtrarProductos('nuevo')">Nuevos</li>
+                        <li class="filtro-item" onclick="filtrarProductos('oferta')">Ofertas</li>
+                    </ul>
+                </div>
+
+                <!-- Categoría: Belleza -->
+                <section id="belleza" class="categoria-productos">
+                    <div class="encabezado-categoria">
+                        <h2 class="titulo-categoria">Productos de Belleza</h2>
+                        <span class="contador-productos">8 productos</span>
+                    </div>
+                    
+                    <div class="contenedor-catalogo">
+                        <article class="tarjeta-catalogo" data-categoria="belleza" data-etiquetas="nuevo disponible">
+                            <img src="imgs/ProducsN_Collage.png" alt="Serum Facial" class="imagen-catalogo">
+                            <div class="contenido-catalogo">
+                                <h3 class="nombre-producto">Serum Facial Vitamina C</h3>
+                                <p class="descripcion-producto-catalogo">Serum antioxidante para rostro con Vitamina C pura, ideal para reducir manchas y líneas de expresión.</p>
+                                <div class="precio-producto">S/ 89.90</div>
+                                <div class="etiquetas-producto">
+                                    <span class="etiqueta nuevo">Nuevo</span>
+                                    <span class="etiqueta disponible">Disponible</span>
+                                </div>
+                                <a href="contacto.html" class="boton boton-secundario" style="width: 100%; margin-top: 15px;">Solicitar</a>
+                            </div>
+                        </article>
+
+                        <article class="tarjeta-catalogo" data-categoria="belleza" data-etiquetas="disponible">
+                            <img src="imgs/ProducsN_Collage.png" alt="Kit Maquillaje" class="imagen-catalogo">
+                            <div class="contenido-catalogo">
+                                <h3 class="nombre-producto">Kit Completo de Maquillaje</h3>
+                                <p class="descripcion-producto-catalogo">Set profesional con 12 sombras, base, corrector, rubor y pinceles de alta calidad.</p>
+                                <div class="precio-producto">S/ 149.90</div>
+                                <div class="etiquetas-producto">
+                                    <span class="etiqueta disponible">Disponible</span>
+                                </div>
+                                <a href="contacto.html" class="boton boton-secundario" style="width: 100%; margin-top: 15px;">Solicitar</a>
+                            </div>
+                        </article>
+
+                        <article class="tarjeta-catalogo" data-categoria="belleza" data-etiquetas="oferta disponible">
+                            <img src="imgs/ProducsN_Collage.png" alt="Shampoo Keratina" class="imagen-catalogo">
+                            <div class="contenido-catalogo">
+                                <h3 class="nombre-producto">Shampoo con Keratina</h3>
+                                <p class="descripcion-producto-catalogo">Shampoo reparador con keratina para cabello dañado, restaura brillo y suavidad.</p>
+                                <div class="precio-producto">
+                                    <span style="text-decoration: line-through; color: var(--gris); font-size: 1rem;">S/ 65.00</span>
+                                    S/ 49.90
+                                </div>
+                                <div class="etiquetas-producto">
+                                    <span class="etiqueta oferta">Oferta</span>
+                                    <span class="etiqueta disponible">Disponible</span>
+                                </div>
+                                <a href="contacto.html" class="boton boton-secundario" style="width: 100%; margin-top: 15px;">Solicitar</a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Categoría: Productos Naturales -->
+                <section id="naturales" class="categoria-productos">
+                    <div class="encabezado-categoria">
+                        <h2 class="titulo-categoria">Productos Naturales</h2>
+                        <span class="contador-productos">6 productos</span>
+                    </div>
+                    
+                    <div class="contenedor-catalogo">
+                        <article class="tarjeta-catalogo" data-categoria="naturales" data-etiquetas="nuevo disponible">
+                            <img src="../imgs/ProducsN_Collage.png" alt="Aceite de Argán" class="imagen-catalogo">
+                            <div class="contenido-catalogo">
+                                <h3 class="nombre-producto">Aceite de Argán Puro</h3>
+                                <p class="descripcion-producto-catalogo">Aceite 100% puro de argán marroquí para piel y cabello, sin conservantes.</p>
+                                <div class="precio-producto">S/ 75.90</div>
+                                <div class="etiquetas-producto">
+                                    <span class="etiqueta nuevo">Nuevo</span>
+                                    <span class="etiqueta disponible">Disponible</span>
+                                </div>
+                                <a href="../contacto.html" class="boton boton-secundario" style="width: 100%; margin-top: 15px;">Solicitar</a>
+                            </div>
+                        </article>
+
+                        <article class="tarjeta-catalogo" data-categoria="naturales" data-etiquetas="disponible">
+                            <img src="../imgs/ProducsN_Collage.png" alt="Té Verde Matcha" class="imagen-catalogo">
+                            <div class="contenido-catalogo">
+                                <h3 class="nombre-producto">Té Verde Matcha Orgánico</h3>
+                                <p class="descripcion-producto-catalogo">Matcha premium grado ceremonial, cultivado orgánicamente en Japón.</p>
+                                <div class="precio-producto">S/ 95.90</div>
+                                <div class="etiquetas-producto">
+                                    <span class="etiqueta disponible">Disponible</span>
+                                </div>
+                                <a href="../contacto.html" class="boton boton-secundario" style="width: 100%; margin-top: 15px;">Solicitar</a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Categoría: Cuidado Personal -->
+                <section id="personales" class="categoria-productos">
+                    <div class="encabezado-categoria">
+                        <h2 class="titulo-categoria">Cuidado Personal</h2>
+                        <span class="contador-productos">7 productos</span>
+                    </div>
+                    
+                    <div class="contenedor-catalogo">
+                        <article class="tarjeta-catalogo" data-categoria="personales" data-etiquetas="disponible">
+                            <img src="../imgs/ProducsN_Collage.png" alt="Cepillo Dental Eléctrico" class="imagen-catalogo">
+                            <div class="contenido-catalogo">
+                                <h3 class="nombre-producto">Cepillo Dental Eléctrico</h3>
+                                <p class="descripcion-producto-catalogo">Cepillo eléctrico recargable con 3 modos de limpieza y temporizador.</p>
+                                <div class="precio-producto">S/ 129.90</div>
+                                <div class="etiquetas-producto">
+                                    <span class="etiqueta disponible">Disponible</span>
+                                </div>
+                                <a href="../contacto.html" class="boton boton-secundario" style="width: 100%; margin-top: 15px;">Solicitar</a>
+                            </div>
+                        </article>
+
+                        <article class="tarjeta-catalogo" data-categoria="personales" data-etiquetas="oferta disponible">
+                            <img src="../imgs/ProducsN_Collage.png" alt="Kit Afeitado" class="imagen-catalogo">
+                            <div class="contenido-catalogo">
+                                <h3 class="nombre-producto">Kit de Afeitado Premium</h3>
+                                <p class="descripcion-producto-catalogo">Navaja de seguridad, brocha y jabón de afeitar artesanal.</p>
+                                <div class="precio-producto">
+                                    <span style="text-decoration: line-through; color: var(--gris); font-size: 1rem;">S/ 110.00</span>
+                                    S/ 89.90
+                                </div>
+                                <div class="etiquetas-producto">
+                                    <span class="etiqueta oferta">Oferta</span>
+                                    <span class="etiqueta disponible">Disponible</span>
+                                </div>
+                                <a href="../contacto.html" class="boton boton-secundario" style="width: 100%; margin-top: 15px;">Solicitar</a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Categoría: Software -->
+                <section id="software" class="categoria-productos">
+                    <div class="encabezado-categoria">
+                        <h2 class="titulo-categoria">Software y Digital</h2>
+                        <span class="contador-productos">5 productos</span>
+                    </div>
+                    
+                    <div class="contenedor-catalogo">
+                        <article class="tarjeta-catalogo" data-categoria="software" data-etiquetas="nuevo disponible">
+                            <img src="../imgs/ProducsN_Collage.png" alt="Suite Office" class="imagen-catalogo">
+                            <div class="contenido-catalogo">
+                                <h3 class="nombre-producto">Microsoft Office 365</h3>
+                                <p class="descripcion-producto-catalogo">Licencia anual para 5 dispositivos, incluye Word, Excel, PowerPoint, Outlook.</p>
+                                <div class="precio-producto">S/ 199.90</div>
+                                <div class="etiquetas-producto">
+                                    <span class="etiqueta nuevo">Nuevo</span>
+                                    <span class="etiqueta disponible">Disponible</span>
+                                </div>
+                                <a href="../contacto.html" class="boton boton-secundario" style="width: 100%; margin-top: 15px;">Solicitar</a>
+                            </div>
+                        </article>
+
+                        <article class="tarjeta-catalogo" data-categoria="software" data-etiquetas="disponible">
+                            <img src="../imgs/ProducsN_Collage.png" alt="Antivirus" class="imagen-catalogo">
+                            <div class="contenido-catalogo">
+                                <h3 class="nombre-producto">Antivirus Premium 2024</h3>
+                                <p class="descripcion-producto-catalogo">Licencia de 1 año para 3 dispositivos, protección en tiempo real.</p>
+                                <div class="precio-producto">S/ 89.90</div>
+                                <div class="etiquetas-producto">
+                                    <span class="etiqueta disponible">Disponible</span>
+                                </div>
+                                <a href="../contacto.html" class="boton boton-secundario" style="width: 100%; margin-top: 15px;">Solicitar</a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <!-- Sección de Productos Destacados -->
+        <section class="seccion-destacados-productos">
+            <div class="contenedor">
+                <div class="contenedor-destacados">
+                    <div class="imagen-destacados">
+                        <img src="../imgs/ProducsN_Collage.png" alt="Productos ImportMVS">
+                    </div>
+                    <div>
+                        <h2 class="titulo-seccion">Productos 100% Importados</h2>
+                        <p class="subtitulo-seccion">Garantía de calidad internacional</p>
+                        <p style="margin: 20px 0; line-height: 1.6;">
+                            Todos nuestros productos son importados directamente de los mejores proveedores internacionales, garantizando autenticidad, calidad y los más altos estándares.
+                        </p>
+                        <ul style="text-align: left; margin: 20px 0; padding-left: 20px;">
+                            <li>Certificados de autenticidad</li>
+                            <li>Garantía internacional</li>
+                            <li>Embalaje original</li>
+                            <li>Soporte post-venta</li>
+                        </ul>
+                        <a href="../contacto.html" class="boton boton-primario">Solicitar Catálogo Completo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Solicitud Especial -->
+        <section class="seccion-solicitud">
+            <div class="contenedor">
+                <div class="contenido-solicitud">
+                    <h2 class="titulo-seccion">¿No encuentras lo que buscas?</h2>
+                    <p class="subtitulo-seccion">Podemos importarlo especialmente para ti</p>
+                    <p style="margin: 20px 0; line-height: 1.6;">
+                        Si necesitas un producto específico que no aparece en nuestro catálogo, contáctanos y lo importaremos directamente para ti.
+                    </p>
+                    <a href="../contacto.html" class="boton boton-secundario">Solicitar Producto Especial</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de Página -->
+    <footer class="pie-pagina">
+        <div class="contenedor">
+            <div class="contenido-pie">
+                <div class="marca-pie">
+                    <img src="../imgs/Perfilmvscollage.png" alt="ImportMVS" class="logo-pie">
+                    <h3 class="titulo-pie">ImportMVS</h3>
+                    <p class="eslogan-pie">Importando calidad, entregando confianza</p>
+                </div>
+                
+                <div class="enlaces-pie">
+                    <h4 class="encabezado-pie">Enlaces Rápidos</h4>
+                    <ul class="menu-pie">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="../contacto.html">Contacto</a></li>
+                        <li><a href="../porque.html">¿Por qué elegirnos?</a></li>
+                    </ul>
+                </div>
+                
+                <div class="redes-pie">
+                    <h4 class="encabezado-pie">Síguenos</h4>
+                    <div class="contenedor-redes">
+                        <a href="#" class="icono-red" aria-label="Facebook">
+                            <span class="icono">📘</span>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="#" class="icono-red" aria-label="Instagram">
+                            <span class="icono">📷</span>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="#" class="icono-red" aria-label="WhatsApp">
+                            <span class="icono">💬</span>
+                            <span>WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="base-pie">
+                <p class="derechos-autor">&copy; 2023 ImportMVS. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../funciones.js"></script>
+    <script>
+        // Función para filtrar productos
+        function filtrarProductos(categoria) {
+            // Actualizar filtros activos
+            document.querySelectorAll('.filtro-item').forEach(item => {
+                item.classList.remove('activo');
+            });
+            event.target.classList.add('activo');
+            
+            // Mostrar/ocultar productos
+            const productos = document.querySelectorAll('.tarjeta-catalogo');
+            
+            productos.forEach(producto => {
+                if (categoria === 'todos') {
+                    producto.style.display = 'block';
+                } else {
+                    const categoriaProducto = producto.getAttribute('data-categoria');
+                    const etiquetas = producto.getAttribute('data-etiquetas');
+                    
+                    if (categoriaProducto === categoria || etiquetas.includes(categoria)) {
+                        producto.style.display = 'block';
+                    } else {
+                        producto.style.display = 'none';
+                    }
+                }
+            });
+            
+            // Desplazarse a la categoría si corresponde
+            if (['belleza', 'naturales', 'personales', 'software'].includes(categoria)) {
+                document.getElementById(categoria).scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
